@@ -24,7 +24,6 @@ class LoginController extends Controller
         $adminPassword = env('ADMIN_PASSWORD');
 
         if ($request->email === $adminEmail && $request->password === $adminPassword) {
-            // Login exitoso: guardamos usuario en sesión
             Session::put('admin_logged_in', true);
             return redirect()->route('dashboard');
         }
