@@ -25,7 +25,7 @@ class LoginController extends Controller
 
         if ($request->email === $adminEmail && $request->password === $adminPassword) {
             Session::put('admin_logged_in', true);
-            return redirect()->route('admin.index');
+            return redirect()->route('admin.contacts');
         }
 
         return back()->withErrors(['email' => 'Credenciales incorrectas']);

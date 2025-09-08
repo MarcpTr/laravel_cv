@@ -9,12 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+   
+public function up()
 {
-    Schema::create('projects_technologies', function (Blueprint $table) {
+    Schema::create('contact_messages', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('project_id')->constrained('projects')->onDelete('cascade');
-        $table->foreignId('technologie_id')->constrained('technologies')->onDelete('cascade');
+        $table->string('name');
+        $table->string('email');
+        $table->text('message');
         $table->timestamps();
     });
 }
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('projects_technologies');
+        Schema::dropIfExists('contact_messages');
     }
 };

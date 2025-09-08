@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Session;
 
 class AdminAuth
 {
-    public function handle(Request $request, Closure $next)
+     public function handle(Request $request, Closure $next)
     {
         if (!Session::get('admin_logged_in')) {
             return redirect()->route('login');
