@@ -1,39 +1,39 @@
 # Laravel CV
 
-Este es un proyecto web desarrollado con **Laravel** que funciona como una página personal de **Currículum Vitae (CV)**. Muestra tus datos profesionales, habilidades y experiencia, y permite a los visitantes enviarte mensajes mediante un formulario de contacto.
+This is a web project developed with Laravel that functions as a personal **Curriculum Vitae (CV) page**. It displays your professional information, skills, and experience, and allows visitors to send you messages through a contact form.
 
-## ✨ Características
+## ✨ Features
 
-- 🔧 Backend en Laravel
-- 🎨 Plantillas Blade para el frontend
-- 📄 Datos personales gestionados desde un archivo PHP
-- 📬 Formulario de contacto con envío por `fetch()`
-- 🔐 Panel de administración protegido por un **login personalizado**
-- ✅ Middleware para autenticación de administrador
-- 💾 Contactos recibidos visibles en el panel de control
+- 🔧 Backend built with Laravel
+- 🎨 Blade templates for the frontend
+- 📄 Personal data managed from a PHP file
+- 📬 Contact form with submission via fetch()
+- 🔐 Admin panel protected by a custom login
+- ✅Middleware for admin authentication
+- 💾Received messages visible in the control panel
 
-## 🚀 Instalación
+## 🚀 Installation
 
-1. Clona este repositorio:
+1. Clone this repository:
 
    ```bash
    git clone https://github.com/MarcpTr/laravel_cv.git
    cd laravel_cv
-2. Instala las dependencias:
+2. Install the dependencies:
     ```bash
    composer install
    npm install && npm run dev
-3. Copia el archivo .env y configura las variables necesarias:
+3. Copy the .env file and configure the necessary variables:
     ```bash
     cp .env.example .env
     php artisan key:generate
-4. Define tu email y contraseña de admin en .env:
+4. Set your admin email and password in the .env file:
     ```bash
     ADMIN_EMAIL=admin@ejemplo.com
     ADMIN_PASSWORD=tu_contraseña_segura
-## 🔐 Login Personalizado para Admin
+## 🔐 Custom Admin Login
 
-El sistema de autenticación de administrador es personalizado, sin usar Laravel Breeze o Jetstream.
+The admin authentication system is custom-built, without using Laravel Breeze or Jetstream.
 ```bash
     public function login(Request $request)
     {
@@ -53,7 +53,7 @@ El sistema de autenticación de administrador es personalizado, sin usar Laravel
     }
 ```
 
-## Middleware de Autenticación
+## Authentication Middleware
  ```bash
     bootstrap\app.php
     ->withMiddleware(function (Middleware $middleware): void {
