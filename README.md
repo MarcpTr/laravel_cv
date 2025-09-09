@@ -54,7 +54,6 @@ El sistema de autenticación de administrador es personalizado, sin usar Laravel
 ```
 
 ## Middleware de Autenticación
-El middleware admin.auth protege las rutas del panel:
  ```bash
     bootstrap\app.php
     ->withMiddleware(function (Middleware $middleware): void {
