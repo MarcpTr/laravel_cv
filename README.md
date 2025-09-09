@@ -1,4 +1,4 @@
-# Laravel CV Web
+# Laravel CV
 
 Este es un proyecto web desarrollado con **Laravel** que funciona como una página personal de **Currículum Vitae (CV)**. Muestra tus datos profesionales, habilidades y experiencia, y permite a los visitantes enviarte mensajes mediante un formulario de contacto.
 
