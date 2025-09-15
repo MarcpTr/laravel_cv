@@ -16,7 +16,6 @@ class ContactMessageController extends Controller
         ]);
 
         ContactMessage::create($validated);
-
         return response()->json(['success' => true, 'message' => 'Mensaje enviado correctamente']);
     }
 }
