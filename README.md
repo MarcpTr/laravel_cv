@@ -2,17 +2,17 @@
 
 This is a web project developed with Laravel that functions as a personal **Curriculum Vitae (CV) page**. It displays your professional information, skills, and experience, and allows visitors to send you messages through a contact form.
 
-## ✨ Features
+##  Features
 
-- 🔧 Backend built with Laravel
-- 🎨 Blade templates for the frontend
-- 📄 Personal data managed from a PHP file
-- 📬 Contact form with submission via fetch()
-- 🔐 Admin panel protected by a custom login
-- ✅Middleware for admin authentication
-- 💾Received messages visible in the control panel
+-  Backend built with Laravel
+-  Blade templates for the frontend
+-  Personal data managed from a PHP file
+-  Contact form with submission via fetch()
+-  Admin panel protected by a custom login
+- Middleware for admin authentication
+- Received messages visible in the control panel
 
-## 🚀 Installation
+##  Installation
 
 1. Clone this repository:
 
@@ -31,7 +31,7 @@ This is a web project developed with Laravel that functions as a personal **Curr
     ```bash
     ADMIN_EMAIL=admin@ejemplo.com
     ADMIN_PASSWORD=tu_contraseña_segura
-## 🔐 Custom Admin Login
+##  Custom Admin Login
 
 The admin authentication system is custom-built, without using Laravel Breeze or Jetstream.
 ```bash
