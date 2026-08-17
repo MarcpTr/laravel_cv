@@ -1,27 +1,27 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ContactMessageController;
+use App\Http\Controllers\ContactController;
+use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    $data = include app_path('data/portfolio.php');
+Route::view('/', 'home')->name('home');
 
-    $about = $data['about'];
-    $projects = $data['projects'];
-    $technologies = $data['technologies'];
-    $links = $data['links'];
+Route::post('/contact', [ContactController::class, 'store'])
+    ->middleware('throttle:contact')
+    ->name('contact.store');
 
-    return view('index', compact('about', 'projects', "technologies", 'links'));
-});
-Route::get('login', [LoginController::class, 'showLogin'])->name('login');
-Route::post('login', [LoginController::class, 'login'])->name('login.post');
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/login', [LoginController::class, 'show'])
+    ->name('login');
 
-Route::post('/contact', [ContactMessageController::class, 'store']);
+Route::post('/login', [LoginController::class, 'login'])
+    ->name('login.store');
 
-Route::middleware(['admin.auth'])->group(function () {
-    Route::get('/admin/contacts', [AdminController::class, 'index'])->name('admin.contacts');
-    Route::get('/admin', [AdminController::class, 'index'])->name('admin.contacts');
+Route::post('/logout', [LoginController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
+
+Route::middleware('auth')->prefix('admin')->group(function () {
+    Route::get('/contacts', [ContactMessageController::class, 'index'])
+        ->name('admin.contacts');
 });

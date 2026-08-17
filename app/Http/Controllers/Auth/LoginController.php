@@ -2,38 +2,46 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class LoginController extends Controller
 {
-    public function showLogin()
+    public function show(): View
     {
         return view('auth.login');
     }
 
-    public function login(Request $request)
+    public function login(Request $request): RedirectResponse
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'string'],
         ]);
 
-        $adminEmail = env('ADMIN_EMAIL');
-        $adminPassword = env('ADMIN_PASSWORD');
+        if (Auth::attempt($credentials, false)) {
+            $request->session()->regenerate();
 
-        if ($request->email === $adminEmail && $request->password === $adminPassword) {
-            Session::put('admin_logged_in', true);
-            return redirect()->route('admin.contacts');
+            return redirect()->intended(route('admin.contacts'));
         }
 
-        return back()->withErrors(['email' => 'Credenciales incorrectas']);
+        return back()
+            ->withErrors([
+                'email' => 'Las credenciales no son correctas.',
+            ])
+            ->onlyInput('email');
     }
 
-    public function logout()
+    public function logout(Request $request): RedirectResponse
     {
-        Session::forget('admin_logged_in');
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login');
     }
 }

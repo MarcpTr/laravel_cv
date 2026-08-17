@@ -1,26 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Login Admin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Acceso</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body>
-    <h1>Login Admin</h1>
+    <main>
+        <h1>Acceso de administrador</h1>
 
-    @if($errors->any())
-        <div style="color:red;">
-            {{ $errors->first() }}
-        </div>
-    @endif
+        @if ($errors->any())
+            <div>
+                {{ $errors->first() }}
+            </div>
+        @endif
 
-    <form method="POST" action="{{ route('login.post') }}">
-        @csrf
-        <label>Email:</label>
-        <input type="email" name="email" required><br><br>
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-        <label>Password:</label>
-        <input type="password" name="password" required><br><br>
+            <div>
+                <label for="email">Email</label>
 
-        <button type="submit">Ingresar</button>
-    </form>
+                <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    required
+                    autofocus
+                >
+            </div>
+
+            <div>
+                <label for="password">Contraseña</label>
+
+                <input
+                    id="password"
+                    type="password"
+                    name="password"
+                    required
+                >
+            </div>
+
+            <button type="submit">
+                Iniciar sesión
+            </button>
+        </form>
+    </main>
 </body>
 </html>
